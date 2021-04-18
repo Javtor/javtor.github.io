@@ -66,7 +66,7 @@
       const form = document.querySelector('form');
       const messages = document.querySelector('#messages');
 
-      var socket = new SockJS("http://1368ad4ef022.ngrok.io/gs-guide-websocket");
+      var socket = new SockJS("https://1368ad4ef022.ngrok.io/gs-guide-websocket");
       stompClient = Stomp.over(socket);
       stompClient.connect({}, (frame) => {
          console.log('Connected: ' + frame);
@@ -88,7 +88,7 @@
          msgs.forEach(createMessage);
       }
 
-      fetch("http://1368ad4ef022.ngrok.io/damelos")
+      fetch("https://1368ad4ef022.ngrok.io/damelos")
          .then(res => res.json())
          .then(createMessages);
 
