@@ -1,106 +1,26 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
 <head>
-   <title>Socket.IO chat</title>
-   <style>
-      * {
-         margin: 0;
-         padding: 0;
-         box-sizing: border-box;
-      }
-
-      body {
-         font: 13px Helvetica, Arial;
-      }
-
-      form {
-         background: #000;
-         padding: 3px;
-         position: fixed;
-         bottom: 0;
-         width: 100%;
-      }
-
-      form input {
-         border: 0;
-         padding: 10px;
-         width: 90%;
-         margin-right: 0.5%;
-      }
-
-      form button {
-         width: 9%;
-         background: rgb(130, 224, 255);
-         border: none;
-         padding: 10px;
-      }
-
-      #messages {
-         list-style-type: none;
-         margin: 0;
-         padding: 0;
-      }
-
-      #messages li {
-         padding: 5px 10px;
-      }
-
-      #messages li:nth-child(odd) {
-         background: #eee;
-      }
-   </style>
+   <meta charset='utf-8'>
+   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+   <title>Javtor</title>
+   <meta name='viewport' content='width=device-width, initial-scale=1'>
+   <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+   <script src='main.js'></script>
+   
 </head>
-
 <body>
-   <ul id="messages"></ul>
-   <form action="">
-      <input id="username" autocomplete="off" placeholder="username" />
-      <input id="m" autocomplete="off" placeholder="equation" />
-      <button>Send</button>
-   </form>
-   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.5.1/sockjs.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
-   <script>
-      const form = document.querySelector('form');
-      const messages = document.querySelector('#messages');
-
-      var socket = new SockJS("https://1368ad4ef022.ngrok.io/gs-guide-websocket");
-      stompClient = Stomp.over(socket);
-      stompClient.connect({}, (frame) => {
-         console.log('Connected: ' + frame);
-         stompClient.subscribe('/topic/greetings', (greeting) => {
-            let msgs = JSON.parse(greeting.body);
-            console.log(msgs);
-            messages.innerHTML = "";
-            createMessages(msgs);
-         });
-      });
-
-      function createMessage(msg) {
-         const li = document.createElement('li');
-         li.textContent = `${msg.sender}: ${msg.text} ------ ${msg.createdAt} - ${msg.receiver}`
-         messages.append(li);
-      }
-
-      function createMessages(msgs) {
-         msgs.forEach(createMessage);
-      }
-
-      fetch("https://1368ad4ef022.ngrok.io/damelos")
-         .then(res => res.json())
-         .then(createMessages);
-
-      form.addEventListener("submit", (e) => {
-         e.preventDefault();
-         stompClient.send("/app/hello", {}, JSON.stringify({
-            text: document.querySelector('#m').value,
-            sender: document.querySelector('#username').value
-         }));
-         e.target.reset();
-      });
-   </script>
+   <video width="868" height="766" autoplay loop muted>
+      <source src="miau.webm" type="video/webm" />
+    </video>
+   <h1>miau</h1>
+   <audio
+         id="audio"
+        controls
+        loop
+        src="aguamarina.mp3">
+            Your browser does not support the
+            <code>audio</code> element.
+    </audio>
 </body>
-
 </html>
