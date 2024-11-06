@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List Fetcher</title>
+</head>
+<body>
+    <button onclick="fetchList()">Fetch List</button>
+    <ul id="listContainer"></ul>
+
+    <script>
+        async function fetchList() {
+            try {
+                // Replace with your actual endpoint
+                const response = await fetch('https://api.cloud.llamaindex.ai/api/v1/api-keys', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                const listContainer = document.getElementById('listContainer');
+                listContainer.innerHTML = ''; // Clear existing items
+                
+                data.forEach(item => {
+                    const li = document.createElement('li');
+                    li.textContent = item;
+                    listContainer.appendChild(li);
+                });
+            } catch (error) {
+                console.error('Error fetching list:', error);
+            }
+        }
+    </script>
+</body>
+</html>
